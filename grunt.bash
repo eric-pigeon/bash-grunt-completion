@@ -9,7 +9,7 @@ _grunt() {
 
 	# if theres a grunt.js file in the current directory tasks match registerTask regex
 	if [[ -f ./grunt.js ]]; then
-	  tasks+=" "$(sed -En 's/^.*registerTask\(\s*['\''"](.*)['\''"]\s*,.*$/\1/p' ./grunt.js)
+	  tasks+=" "$(sed -En "s/^.*registerTask\(\s*('|\")(.*)\1\s*,.*$/\2/p" ./grunt.js)
 	fi
 
 	if [[ $cur == -* ]]; then
